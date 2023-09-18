@@ -3,12 +3,23 @@ import {motion} from "framer-motion"
 
 const Base = ({addBase,pizza}) => {
   const bases=['Classic','Thin & Crispy','Thick Crust']
+  const containerVarient={
+    hidden:{
+      opacity:0,
+      x:'100vw'
+    },
+    visible:{
+      opacity:1,
+      x:0
+    }
+  }
   return (
     <motion.div
-    initial={{y:'100vh',opacity:0}}
-         animate={{y:0,opacity:1}}
+        variants={containerVarient}
+        initial='hidden'
+         animate='visible'
          transition={{delay:0.3,duration:0.3,type:'spring',stiffness:500}} 
-    className="">
+         className="">
       <h3 className="text-[30px]">Step 1:Choose your bases</h3>
       <ul className="cursor-pointer list-disc ml-10">
         {bases.map(base=>{
