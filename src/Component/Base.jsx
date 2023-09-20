@@ -6,28 +6,46 @@ const Base = ({addBase,pizza}) => {
   const containerVarient={
     hidden:{
       opacity:0,
-      x:'100vw'
+      x:'-100vw'
     },
-    visible:{
-      opacity:1,
-      x:0
+      visible:{
+          opacity:1,
+           x:0
     }
   }
+  const buttonAnimat={
+    hidden:{
+     x:'-100vw',opacity:0
+    },
+    visible:{
+      x:0,opacity:1,
+       transition:
+       {type:'spring',stiffness:300,duration:0.5} 
+    },
+ hover:{
+    scale:1.1,
+    textShadow:"0px 0px 8px rgb(255,255,255)",
+    boxShadow:"0px 0px 8px rgb(255,255,255)",
+    transition:{ type: 'spring', velocity: 2 }
+    },
+}
   return (
     <motion.div
         variants={containerVarient}
         initial='hidden'
          animate='visible'
-         transition={{delay:0.3,duration:0.3,type:'spring',stiffness:500}} 
+         transition={{duration:0.5, type:'spring',stiffness:100}} 
          className="">
       <h3 className="text-[30px]">Step 1:Choose your bases</h3>
       <ul className="cursor-pointer list-disc ml-10">
         {bases.map(base=>{
           let spannClass=pizza.base===base?'text-black':''
           return (
-            <li key={base} onClick={()=>addBase(base)}>
+            <motion.li
+             whileHover={{scale:1.1}}
+             key={base} onClick={()=>addBase(base)}>
               <span className={spannClass}>{base}</span>
-            </li>
+            </motion.li>
           )
         })}
       </ul>
@@ -35,10 +53,11 @@ const Base = ({addBase,pizza}) => {
         <div className="next">
           <Link to='/topping'>
             <motion.button
-             initial={{x:'-100vw',opacity:0}}
-             animate={{x:0,opacity:1}}
-             transition={{type:'spring',stiffness:120}} 
-             className="rounded-lg border border-zinc-50 px-5 mt-5 hover:bg-slate-100 transition-all hover:text-slate-950">Next</motion.button>
+            variants={buttonAnimat}
+            initial='hidden'
+            whileHover="hover"
+             animate='visible'
+            className="rounded-lg border border-zinc-50 px-5 mt-5 hover:bg-slate-100 transition-all hover:text-slate-950">Next</motion.button>
           </Link>
         </div>
       )}
