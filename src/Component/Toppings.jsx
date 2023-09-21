@@ -1,5 +1,20 @@
 import { Link } from "react-router-dom"
 import {motion} from 'framer-motion'
+const containerVarient={
+    hidden:{
+      opacity:0,
+      x:'100vw'
+    },
+       visible:{
+    opacity:1,
+    x:'0',
+    transition:{delay:0.5,duration:0.5}
+  },
+  exit:{
+    x:'-100vw',
+    transition:{ease:'easeInOut'}
+  }
+  }
   const buttonAnimat={
     hidden:{
      x:'-100vw',opacity:0
@@ -21,7 +36,12 @@ const Toppings = ({addToppings,pizza}) => {
     let toppings=['mushrooms','peppers','onions','olives','extra chees','tomates']
 
   return (
-    <div>
+    <motion.div
+    variants={containerVarient}
+        initial='hidden'
+         animate='visible'
+        exit='exit'
+     >
       <h1>Step 2:choose Toppings</h1>
       <ul className="cursor-pointer list-disc ml-10 ">
         {toppings.map(toping=>{
@@ -44,7 +64,7 @@ const Toppings = ({addToppings,pizza}) => {
              className="rounded-lg border border-zinc-50 px-5 mt-5 hover:bg-slate-100 transition-all hover:text-slate-950">Order</motion.button>
          
       </Link>
-    </div>
+    </motion.div>
   )
 }
 

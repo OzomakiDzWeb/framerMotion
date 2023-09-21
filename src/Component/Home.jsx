@@ -9,12 +9,27 @@ const buttonAnimat={
     transition:{ type: 'spring', velocity: 2 }
     },
 }
+const containerVariant={
+  hidden:{
+    opacity:0,
+  },
+  visible:{
+    opacity:1,
+    transition:{delay:0.5,duration:0.5}
+  },
+  exit:{
+    x:'-100vw',
+    transition:{ease:'easeInOut'}
+  }
+}
 const Home = () => {
   return (
     <motion.div className="font-bold"
-      initial={{opacity:0}}
-      animate={{opacity:1}}
-       transition={{delay:0.5,duration:1.5}}>
+      variants={containerVariant}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      >
       <h2 className="font-bold">
         Welcome to Pizza joint
       </h2>

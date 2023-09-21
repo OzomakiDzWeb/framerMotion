@@ -6,12 +6,17 @@ const Base = ({addBase,pizza}) => {
   const containerVarient={
     hidden:{
       opacity:0,
-      x:'-100vw'
+      x:'100vw'
     },
-      visible:{
-          opacity:1,
-           x:0
-    }
+       visible:{
+    opacity:1,
+    x:'0',
+    transition:{delay:0.5,duration:0.5}
+  },
+  exit:{
+    x:'-100vw',
+    transition:{ease:'easeInOut'}
+  }
   }
   const buttonAnimat={
     hidden:{
@@ -20,7 +25,7 @@ const Base = ({addBase,pizza}) => {
     visible:{
       x:0,opacity:1,
        transition:
-       {type:'spring',stiffness:300,duration:0.5} 
+       {duration:0.5} 
     },
  hover:{
     scale:1.1,
@@ -34,7 +39,7 @@ const Base = ({addBase,pizza}) => {
         variants={containerVarient}
         initial='hidden'
          animate='visible'
-         transition={{duration:0.5, type:'spring',stiffness:100}} 
+        exit='exit'
          className="">
       <h3 className="text-[30px]">Step 1:Choose your bases</h3>
       <ul className="cursor-pointer list-disc ml-10">
