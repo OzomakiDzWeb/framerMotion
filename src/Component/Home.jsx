@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import {motion} from 'framer-motion'
+import Loder from "./Loder"
 
 const buttonAnimat={
  hover:{
@@ -24,7 +25,7 @@ const containerVariant={
 }
 const Home = () => {
   return (
-    <motion.div className="font-bold"
+    <motion.div className="font-bold flex flex-col justify-center items-center"
       variants={containerVariant}
       initial="hidden"
       animate="visible"
@@ -41,7 +42,8 @@ const Home = () => {
           Creat your pizza
         </motion.button>
       </Link>
-    </motion.div>
+      <Loder/>
+     </motion.div>
   )
 }
 
